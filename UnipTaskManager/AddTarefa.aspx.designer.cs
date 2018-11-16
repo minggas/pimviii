@@ -10,16 +10,16 @@
 namespace UnipTaskManager {
     
     
-    public partial class Login {
+    public partial class AddTarefa {
         
         /// <summary>
-        /// Controle txtRa.
+        /// Controle sltTipo.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRa;
+        protected global::System.Web.UI.WebControls.DropDownList sltTipo;
         
         /// <summary>
         /// Controle req1.
@@ -31,30 +31,21 @@ namespace UnipTaskManager {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator req1;
         
         /// <summary>
-        /// Controle txtSenha.
+        /// Controle txtDataLimite.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSenha;
+        protected global::System.Web.UI.WebControls.TextBox txtDataLimite;
         
         /// <summary>
-        /// Controle req4.
+        /// Controle req2.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator req4;
-        
-        /// <summary>
-        /// Controle btnLogin.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLogin;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator req2;
     }
 }

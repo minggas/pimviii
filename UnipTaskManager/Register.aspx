@@ -5,21 +5,40 @@
         <h2><%: Title %></h2>
         <div class="form-signin">
             <h3 class="h3 mb-3 font-weight-normal">Preencha os dados para efetuar seu cadastro</h3>
-            <label for="inputNome" class="sr-only">Nome</label>
-            <input type="text" id="inputNome" class="form-control" placeholder="Nome" required autofocus runat="server">
-            <label for="inputRa" class="sr-only">RA</label>
-            <input type="number" id="inputRa" class="form-control" placeholder="RA" required autofocus runat="server">
-            <label for="inputNome" class="sr-only">Curso</label>
-            <input type="text" id="inputCurso" class="form-control" placeholder="Curso" required autofocus runat="server">
-            <label for="inputLogin" class="sr-only">Login</label>
-            <input type="text" id="inputLogin" class="form-control" placeholder="Login" required autofocus runat="server">            
-            <label for="inputPassword" class="sr-only">Senha</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required runat="server">
-            <label for="confirmPassword" class="sr-only">Confirme Senha</label>
-            <input type="password" id="confirmPassword" class="form-control" placeholder="Confrime Senha" required runat="server">
+            
+            <asp:TextBox type="text" ID="txtNome" runat="server" class="form-control" placeholder="Nome"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="req1" runat="server" Text="Preencha seu Nome" ControlToValidate="txtNome" Display="dynamic"></asp:RequiredFieldValidator>
+            
+            
+            
+            <asp:TextBox type="number" ID="txtRa" runat="server" class="form-control" placeholder="RA"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="req2"
+                        runat="server" Text="Preenchar o seu RA" ControlToValidate="txtRa"
+                        Display="dynamic"></asp:RequiredFieldValidator>                    
+            
+
+            
+            <asp:TextBox type="text" ID="txtCurso" runat="server" class="form-control" placeholder="Curso"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="req3"
+                        runat="server" Text="Preencha seu Curso" ControlToValidate="txtCurso"
+                        Display="dynamic"></asp:RequiredFieldValidator>
+            
+          
+            <asp:TextBox type="password" ID="txtSenha" runat="server" class="form-control" placeholder="Senha"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="req4"
+                        runat="server" Text="Preencha sua senha" ControlToValidate="txtSenha"
+                        Display="dynamic"></asp:RequiredFieldValidator>
+           
+          
+            <asp:TextBox type="password" ID="txtConfirmarSenha" runat="server" class="form-control" placeholder="Confirme Senha"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="req5"
+                        runat="server" Text="Confirme sua senha" ControlToValidate="txtConfirmarSenha"
+                        Display="dynamic"></asp:RequiredFieldValidator>
+            <asp:CompareValidator runat="server" id="cmpSenhas" controltovalidate="txtSenha" controltocompare="txtConfirmarSenha" type="String" errormessage="As senhas estão diferentes" />
             <br />
-            <asp:Button class="btn btn-lg btn-primary btn-block" type="submit" ID="btnSubmit" runat="server"
-                Text="Cadastrar" OnClick="IncluirRegistros" />
+            <asp:Button class="btn btn-lg btn-primary btn-block" ID="btnSubmit" runat="server" Text="Cadastrar" onClick="Btn_Cadastro" />
         </div>
-    </div>                
+    </div>
+    
+
 </asp:Content>

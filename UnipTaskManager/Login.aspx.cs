@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.OleDb;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,14 +12,15 @@ namespace UnipTaskManager
 {
     public partial class Login : Page
     {
+        string conexaoAccess = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        protected void Logar(object sender, EventArgs e)
+        protected void Btn_Logar(object sender, EventArgs e)
         {
-            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + inputLogin.Value + "');", true);
+
         }
     }
 }
