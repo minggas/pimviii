@@ -7,6 +7,7 @@
         <p class="lead">
             Preencha os dados abaixo para cadastrar sua atividade.
         </p>
+        <asp:Label ID="lblMsg" runat="server" Text=""></asp:Label>
     </div>
 
     <div class="row">

@@ -39,9 +39,21 @@ namespace UnipTaskManager
                 command.Parameters.AddWithValue("@ra", ra);
 
                 command.Connection.Open();
-                command.ExecuteNonQuery();
+                int state = command.ExecuteNonQuery();
 
-                command.Connection.Close();
+                if (state > 0) {
+
+                    lblMsg.Text = "Dados salvos com sucesso!";
+
+                    Response.Redirect("~/UserPage.aspx");
+                    command.Connection.Close();
+                }
+                else{
+                    lblMsg.Text = "Erro ao tentar salvar os dados no banco!";
+                    command.Connection.Close();
+                }
+                
+
             }
 
         }
