@@ -23,13 +23,9 @@ namespace UnipTaskManager
 
             using (OleDbConnection connection = new OleDbConnection(cs))
             {
-                string query = "INSERT INTO Aluno(RA, nome, senha, curso)VALUES(@RA, @nome, @senha, @curso)";
+                string query = "INSERT INTO Aluno(RA, nome, senha, curso)VALUES('" + ra + "', '" + nome + "', '" + senha + "', '" + curso + "')";
 
                 OleDbCommand command = new OleDbCommand(query, connection);
-                command.Parameters.AddWithValue("@RA", ra);
-                command.Parameters.AddWithValue("@nome", nome);
-                command.Parameters.AddWithValue("@senha", senha);
-                command.Parameters.AddWithValue("@curso", curso);
 
                 command.Connection.Open();
                 int state = command.ExecuteNonQuery();

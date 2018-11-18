@@ -22,7 +22,7 @@ namespace UnipTaskManager
 
 
             String tipo = sltTipo.Text;
-            String data = txtDataLimite.Text;
+            String datalimite = txtDataLimite.Text;
             String descricao = txtDescricao.Text;
             String ra = dplRA.Text;
 
@@ -30,26 +30,25 @@ namespace UnipTaskManager
 
             using (OleDbConnection connection = new OleDbConnection(cs))
             {
-                string query = "INSERT INTO Tarefa(descricao,tipo,datalimite,ra)VALUES(@descricao,@tipo,@datalimite,@ra)";
+                string query = "INSERT INTO Tarefa(descricao,tipo,datalimite,ra)VALUES('" + descricao + "','" + tipo + "','" + datalimite + "','" + ra + "')";
 
                 OleDbCommand command = new OleDbCommand(query, connection);
-                command.Parameters.AddWithValue("@tipo", tipo);
-                command.Parameters.AddWithValue("@datalimite", data);
-                command.Parameters.AddWithValue("@descricao", descricao);
-                command.Parameters.AddWithValue("@ra", ra);
+                
 
                 command.Connection.Open();
                 int state = command.ExecuteNonQuery();
 
-                if (state > 0) {
+                if (state > 0)
+                {
                     Response.Redirect("~/UserPage.aspx?msg=Dados salvos com sucesso");
                     command.Connection.Close();
                 }
-                else{
+                else
+                {
                     lblMsg.Text = "Erro ao tentar salvar os dados no banco!";
                     command.Connection.Close();
                 }
-                
+
 
             }
 
