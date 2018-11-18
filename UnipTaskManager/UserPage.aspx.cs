@@ -14,9 +14,6 @@ namespace UnipTaskManager
 {
     public partial class UserPage : Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            
-        }
+        
     }
 }

@@ -2,23 +2,61 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %></h2>
-    <asp:Button ID="btnAdd" CommandName="AddNew" runat="server" Text="Inserir nova tarefa" OnClick="btnAdd_Click" PostBackUrl="~/AddTarefa.aspx" />
+    <asp:Button ID="btnAdd" CommandName="AddNew" runat="server" Text="Inserir nova tarefa" PostBackUrl="~/AddTarefa.aspx" />
     <br />
-    <asp:GridView runat="server" ID="gvTarefas" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="ID" OnPageIndexChanging="gvTarefas_PageIndexChanging" OnRowCancelingEdit="gvTarefas_RowCancelingEdit"
-        OnRowEditing="gvTarefas_RowEditing" OnRowUpdating="gvTarefas_RowUpdating" OnRowDeleting="gvTarefas_RowDeleting" OnRowCommand="gvTarefas_RowCommand" Width="724px" DataSourceID="dsTaskPimv">
-        <HeaderStyle CssClass="headerstyle" />
+    <br />
+    <asp:GridView ID="gvTask" CssClass="table table-sm table-hover" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="4" DataKeyNames="ID" DataSourceID="dsTaskpim" ForeColor="Black" GridLines="Horizontal" AllowSorting="True">
         <Columns>
-            <asp:BoundField DataField="titulo" HeaderText="titulo" SortExpression="titulo" />
             <asp:BoundField DataField="ID" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="ID" />
-            <asp:BoundField DataField="dataLimite" HeaderText="dataLimite" SortExpression="dataLimite" />
-            <asp:BoundField DataField="categoria" HeaderText="categoria" SortExpression="categoria" />
-            <asp:BoundField DataField="disciplina" HeaderText="disciplina" SortExpression="disciplina" />
-            <asp:CheckBoxField DataField="terminado" HeaderText="terminado" SortExpression="terminado" />
             <asp:BoundField DataField="descricao" HeaderText="descricao" SortExpression="descricao" />
+            <asp:BoundField DataField="tipo" HeaderText="tipo" SortExpression="tipo" />
+            <asp:BoundField DataField="datalimite" HeaderText="datalimite" SortExpression="datalimite" />
             <asp:BoundField DataField="RA" HeaderText="RA" SortExpression="RA" />
+            <asp:CommandField CancelText="Cancelar" DeleteText="Apagar" EditText="Editar" HeaderText="Ações" InsertText="Inserir" NewText="Novo" SelectText="Selecionar" ShowDeleteButton="True" ShowEditButton="True" UpdateText="Atualizar" />
         </Columns>
+        <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
+        <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" />
+        <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+        <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+        <SortedAscendingCellStyle BackColor="#F7F7F7" />
+        <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+        <SortedDescendingCellStyle BackColor="#E5E5E5" />
+        <SortedDescendingHeaderStyle BackColor="#242121" />
     </asp:GridView>
-
-<asp:SqlDataSource ID="dsTaskPimv" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT [titulo], [ID], [dataLimite], [categoria], [disciplina], [terminado], [descricao], [RA] FROM [Tarefa]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="dsTaskpim" runat="server" ConflictDetection="CompareAllValues" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM [Tarefa] WHERE [ID] = ? AND (([descricao] = ?) OR ([descricao] IS NULL AND ? IS NULL)) AND (([tipo] = ?) OR ([tipo] IS NULL AND ? IS NULL)) AND (([datalimite] = ?) OR ([datalimite] IS NULL AND ? IS NULL)) AND (([RA] = ?) OR ([RA] IS NULL AND ? IS NULL))" InsertCommand="INSERT INTO [Tarefa] ([ID], [descricao], [tipo], [datalimite], [RA]) VALUES (?, ?, ?, ?, ?)" OldValuesParameterFormatString="original_{0}" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [Tarefa]" UpdateCommand="UPDATE [Tarefa] SET [descricao] = ?, [tipo] = ?, [datalimite] = ?, [RA] = ? WHERE [ID] = ? AND (([descricao] = ?) OR ([descricao] IS NULL AND ? IS NULL)) AND (([tipo] = ?) OR ([tipo] IS NULL AND ? IS NULL)) AND (([datalimite] = ?) OR ([datalimite] IS NULL AND ? IS NULL)) AND (([RA] = ?) OR ([RA] IS NULL AND ? IS NULL))">
+        <DeleteParameters>
+            <asp:Parameter Name="original_ID" Type="Int32" />
+            <asp:Parameter Name="original_descricao" Type="String" />
+            <asp:Parameter Name="original_descricao" Type="String" />
+            <asp:Parameter Name="original_tipo" Type="String" />
+            <asp:Parameter Name="original_tipo" Type="String" />
+            <asp:Parameter Name="original_datalimite" Type="DateTime" />
+            <asp:Parameter Name="original_datalimite" Type="DateTime" />
+            <asp:Parameter Name="original_RA" Type="Int32" />
+            <asp:Parameter Name="original_RA" Type="Int32" />
+        </DeleteParameters>
+        <InsertParameters>
+            <asp:Parameter Name="ID" Type="Int32" />
+            <asp:Parameter Name="descricao" Type="String" />
+            <asp:Parameter Name="tipo" Type="String" />
+            <asp:Parameter Name="datalimite" Type="DateTime" />
+            <asp:Parameter Name="RA" Type="Int32" />
+        </InsertParameters>
+        <UpdateParameters>
+            <asp:Parameter Name="descricao" Type="String" />
+            <asp:Parameter Name="tipo" Type="String" />
+            <asp:Parameter Name="datalimite" Type="DateTime" />
+            <asp:Parameter Name="RA" Type="Int32" />
+            <asp:Parameter Name="original_ID" Type="Int32" />
+            <asp:Parameter Name="original_descricao" Type="String" />
+            <asp:Parameter Name="original_descricao" Type="String" />
+            <asp:Parameter Name="original_tipo" Type="String" />
+            <asp:Parameter Name="original_tipo" Type="String" />
+            <asp:Parameter Name="original_datalimite" Type="DateTime" />
+            <asp:Parameter Name="original_datalimite" Type="DateTime" />
+            <asp:Parameter Name="original_RA" Type="Int32" />
+            <asp:Parameter Name="original_RA" Type="Int32" />
+        </UpdateParameters>
+    </asp:SqlDataSource>
 
 </asp:Content>

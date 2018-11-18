@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Configuration;
+using System.Data.OleDb;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace UnipTaskManager
 {
@@ -21,17 +19,30 @@ namespace UnipTaskManager
 
         protected void addTask_Click(object sender, EventArgs e)
         {
-            //pegar dados e salvar no db.
+
 
             String tipo = sltTipo.Text;
             String data = txtDataLimite.Text;
             String descricao = txtDescricao.Text;
             String ra = dplRA.Text;
 
-            String sql;
-            sql = "INSERT INTO Tarefa(tipo, datalimite, descricao, ra) VALUES('"+tipo+"','"+data+"','"+descricao+"','"+ra+"')";
+            string cs = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString.ToString();
 
+            using (OleDbConnection connection = new OleDbConnection(cs))
+            {
+                string query = "INSERT INTO Tarefa(descricao,tipo,datalimite,ra)VALUES(@descricao,@tipo,@datalimite,@ra)";
 
+                OleDbCommand command = new OleDbCommand(query, connection);
+                command.Parameters.AddWithValue("@tipo", tipo);
+                command.Parameters.AddWithValue("@datalimite", data);
+                command.Parameters.AddWithValue("@descricao", descricao);
+                command.Parameters.AddWithValue("@ra", ra);
+
+                command.Connection.Open();
+                command.ExecuteNonQuery();
+
+                command.Connection.Close();
+            }
 
         }
     }
