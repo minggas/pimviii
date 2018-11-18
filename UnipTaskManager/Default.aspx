@@ -7,7 +7,7 @@
             <p class="lead">Bem vindo ao Task Manager, o WebApp para controle de suas atividades na UNIP.</p>
 
             <br />
-            <asp:Label ID="lblmsg1" CssClass="alert alert-success" runat="server" Font-Size="X-Large"></asp:Label>
+            <asp:Label ID="lblmsg1" CssClass="alert alert-success" style="float:right;margin-top:-5%;" runat="server" ></asp:Label>
             <br />
 
             <p class="lead">

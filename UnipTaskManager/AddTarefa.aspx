@@ -8,7 +8,7 @@
             Preencha os dados abaixo para cadastrar sua atividade.
         </p>
         <br />
-        <asp:Label ID="lblMsg" runat="server" Text=""></asp:Label>
+        <asp:Label ID="lblMsg" runat="server" CssClass="alert alert-success" style="float:right;margin-top:-5%;" Text=""></asp:Label>
         <br />
     </div>
 

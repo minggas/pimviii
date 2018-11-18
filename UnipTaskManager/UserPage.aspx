@@ -1,10 +1,10 @@
 ﻿<%@ Page Title="User Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UserPage.aspx.cs" Inherits="UnipTaskManager.UserPage" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%: Title %></h2>
+    <h2 class="text-center">Tarefas</h2>
     <asp:Button ID="btnAdd" CommandName="AddNew" runat="server" Text="Inserir nova tarefa" PostBackUrl="~/AddTarefa.aspx" />
     <br />
-    <asp:Label ID="lblmsg1" CssClass="alert alert-success" runat="server" Font-Size="X-Large"></asp:Label>
+    <asp:Label ID="lblmsg1" CssClass="alert alert-success" style="float:right;margin-top:-5%;" runat="server"></asp:Label>
     <br />
     <asp:GridView ID="gvTask" CssClass="table table-sm table-hover" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="4" DataKeyNames="ID" DataSourceID="dsTaskpim" ForeColor="Black" GridLines="Horizontal" AllowSorting="True">
         <Columns>
