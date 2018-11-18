@@ -18,5 +18,21 @@ namespace UnipTaskManager
         {
 
         }
+
+        protected void addTask_Click(object sender, EventArgs e)
+        {
+            //pegar dados e salvar no db.
+
+            String tipo = sltTipo.Text;
+            String data = txtDataLimite.Text;
+            String descricao = txtDescricao.Text;
+            String ra = dplRA.Text;
+
+            String sql;
+            sql = "INSERT INTO Tarefa(tipo, datalimite, descricao, ra) VALUES('"+tipo+"','"+data+"','"+descricao+"','"+ra+"')";
+
+
+
+        }
     }
 }

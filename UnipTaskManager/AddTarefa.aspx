@@ -38,17 +38,22 @@
             </div>
             <div class="row">
                 <div class="col-md-12 mb-3">
-                    <label for="zip">Descrição</label>
-                    <textarea
-                        class="form-control"
-                        id="zip"
-                        placeholder="Detalhes da atividade"></textarea>
+                    <asp:Label ID="Label1" runat="server" Text="RA"></asp:Label> <br />
+                    <asp:DropDownList ID="dplRA" runat="server" DataSourceID="dsTaskPim" DataTextField="RA" DataValueField="RA">
+                    </asp:DropDownList>
+                    <asp:SqlDataSource ID="dsTaskPim" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT [RA] FROM [Aluno]"></asp:SqlDataSource>
+                   
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <label for="descr">Descrição</label><br />
+                    <asp:TextBox ID="txtDescricao" runat="server" TextMode="MultiLine" Height="76px" Width="594px"></asp:TextBox>
                 </div>
             </div>
             <hr class="mb-4" />
-            <button class="btn btn-primary btn-lg btn-block" type="submit">
-                Cadastrar Atividade
-            </button>
+            <asp:Button ID="addTask" CssClass="btn btn-primary btn-lg btn-block" runat="server" Text="Cadastrar Atividade" OnClick="addTask_Click" />
         </div>
     </div>
     <script>
