@@ -7,7 +7,9 @@
         <p class="lead">
             Preencha os dados abaixo para cadastrar sua atividade.
         </p>
+        <br />
         <asp:Label ID="lblMsg" runat="server" Text=""></asp:Label>
+        <br />
     </div>
 
     <div class="row">
@@ -43,8 +45,6 @@
                     <asp:DropDownList ID="dplRA" runat="server" DataSourceID="dsTaskPim" DataTextField="RA" DataValueField="RA">
                     </asp:DropDownList>
                     <asp:SqlDataSource ID="dsTaskPim" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT [RA] FROM [Aluno]"></asp:SqlDataSource>
-                   
-
                 </div>
             </div>
             <div class="row">

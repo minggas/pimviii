@@ -4,6 +4,7 @@
     <h2><%: Title %></h2>
     <asp:Button ID="btnAdd" CommandName="AddNew" runat="server" Text="Inserir nova tarefa" PostBackUrl="~/AddTarefa.aspx" />
     <br />
+    <asp:Label ID="lblmsg1" CssClass="alert alert-success" runat="server" Font-Size="X-Large"></asp:Label>
     <br />
     <asp:GridView ID="gvTask" CssClass="table table-sm table-hover" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="4" DataKeyNames="ID" DataSourceID="dsTaskpim" ForeColor="Black" GridLines="Horizontal" AllowSorting="True">
         <Columns>

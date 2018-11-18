@@ -42,10 +42,7 @@ namespace UnipTaskManager
                 int state = command.ExecuteNonQuery();
 
                 if (state > 0) {
-
-                    lblMsg.Text = "Dados salvos com sucesso!";
-
-                    Response.Redirect("~/UserPage.aspx");
+                    Response.Redirect("~/UserPage.aspx?msg=Dados salvos com sucesso");
                     command.Connection.Close();
                 }
                 else{
