@@ -5,9 +5,7 @@
         <h2><%: Title %></h2>
         <div class="form-signin">
             <h3 class="h3 mb-3 font-weight-normal">Preencha os dados para efetuar seu cadastro</h3>
-            <br />
-            <asp:Label ID="lblMsg" runat="server" CssClass="alert alert-success" style="float:right;margin-top:-5%;" Text=""></asp:Label>
-            <br />
+            
             <asp:TextBox type="text" ID="txtNome" runat="server" class="form-control" placeholder="Nome"></asp:TextBox>
             <asp:RequiredFieldValidator ID="req1" runat="server" Text="Preencha seu Nome" ControlToValidate="txtNome" Display="dynamic"></asp:RequiredFieldValidator>
 

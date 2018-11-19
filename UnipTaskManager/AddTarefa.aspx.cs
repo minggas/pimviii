@@ -9,7 +9,10 @@ namespace UnipTaskManager
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["UserRa"] == null)
+            {
+                Response.Redirect("~/Login.aspx");
+            }
         }
 
         protected void Selection_Change(object sender, EventArgs e)
@@ -26,29 +29,37 @@ namespace UnipTaskManager
             String descricao = txtDescricao.Text;
             String ra = dplRA.Text;
 
-            string cs = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString.ToString();
-
-            using (OleDbConnection connection = new OleDbConnection(cs))
+            try
             {
-                string query = "INSERT INTO Tarefa(descricao,tipo,datalimite,ra)VALUES('" + descricao + "','" + tipo + "','" + datalimite + "','" + ra + "')";
+                string cs = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString.ToString();
 
-                OleDbCommand command = new OleDbCommand(query, connection);
-                
-
-                command.Connection.Open();
-                int state = command.ExecuteNonQuery();
-
-                if (state > 0)
+                using (OleDbConnection connection = new OleDbConnection(cs))
                 {
-                    Response.Redirect("~/UserPage.aspx?msg=Dados salvos com sucesso");
-                    command.Connection.Close();
-                }
-                else
-                {
-                    lblMsg.Text = "Erro ao tentar salvar os dados no banco!";
-                    command.Connection.Close();
-                }
+                    string query = "INSERT INTO Tarefa(descricao,tipo,datalimite,ra)VALUES('" + descricao + "','" + tipo + "','" + datalimite + "','" + ra + "')";
 
+                    OleDbCommand command = new OleDbCommand(query, connection);
+
+
+                    command.Connection.Open();
+                    int state = command.ExecuteNonQuery();
+
+                    if (state > 0)
+                    {
+                        Response.Redirect("~/UserPage.aspx");
+                        command.Connection.Close();
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "Falha", "alert('Não foi possivel salvar os dados, \n tente novamente mais tarde por favor!!');", true);
+                        command.Connection.Close();
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Falha", "alert('Não foi possivel adicionar, tente novamente mais tarde!! \n" + ex.Message + "');", true);
 
             }
 

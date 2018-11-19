@@ -13,6 +13,7 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
     <script type="text/javascript" src="Scripts/Site.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
@@ -51,7 +52,16 @@
                     <li class="nav-item"><a class="nav-link" runat="server" href="~/">Página inicial</a></li>
                     <li class="nav-item"><a class="nav-link" runat="server" href="~/About">Sobre</a></li>
                     <li class="nav-item"><a class="nav-link" runat="server" href="~/Register">Cadastro</a></li>
+                    <%if (Session["UserRa"] != null)
+                        { %>
+                    <li class="nav-item"><a class="nav-link" runat="server" href="~/UserPage">Atividades</a></li>
+                    <li class="nav-item"><a class="nav-link" runat="server" href="~/Logout">Logout</a></li>
+                    <%}
+                    else
+                    {%>
+                    <li class="nav-item"><a class="nav-link" runat="server" href="~/Register">Cadastro</a></li>
                     <li class="nav-item"><a class="nav-link" runat="server" href="~/Login">Login</a></li>
+                    <% } %>
                 </ul>
             </div>
 
