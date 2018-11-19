@@ -9,7 +9,10 @@ namespace UnipTaskManager
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["UserRa"] == null)
+            {
+                Response.Redirect("~/Login.aspx");
+            }
         }
 
         protected void Selection_Change(object sender, EventArgs e)
@@ -42,12 +45,12 @@ namespace UnipTaskManager
 
                     if (state > 0)
                     {
-                        Response.Redirect("~/UserPage.aspx?msg=Dados salvos com sucesso");
+                        Response.Redirect("~/UserPage.aspx");
                         command.Connection.Close();
                     }
                     else
                     {
-                        lblMsg.Text = "Erro ao tentar salvar os dados no banco!";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "Falha", "alert('Não foi possivel salvar os dados, \n tente novamente mais tarde por favor!!');", true);
                         command.Connection.Close();
                     }
 
@@ -56,7 +59,8 @@ namespace UnipTaskManager
             }
             catch (Exception ex)
             {
-                lblMsg.Text = ex.Message;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Falha", "alert('Não foi possivel adicionar, tente novamente mais tarde!! \n" + ex.Message + "');", true);
+
             }
 
         }

@@ -34,12 +34,14 @@ namespace UnipTaskManager
 
                     if (state > 0)
                     {
-                        Response.Redirect("~/Default.aspx?msg=Dados salvos com sucesso");
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "Sucesso", "alert('Cadastro realizado com sucesso!!');", true);
+                        Response.Redirect("~/Login.aspx");
                         command.Connection.Close();
                     }
                     else
                     {
-                        lblMsg.Text = "Erro ao tentar salvar os dados no banco!";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "Falha", "alert('Não foi possivel registrar, tente novamente mais tarde!!');", true);
+
                         command.Connection.Close();
                     }
 
@@ -48,7 +50,8 @@ namespace UnipTaskManager
             }
             catch (Exception ex)
             {
-                lblMsg.Text = ex.Message;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Falha", "alert('Não foi possivel registrar, tente novamente mais tarde!! \n" + ex.Message + "');", true);
+
             }
 
         }

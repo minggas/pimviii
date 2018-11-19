@@ -52,7 +52,16 @@
                     <li class="nav-item"><a class="nav-link" runat="server" href="~/">Página inicial</a></li>
                     <li class="nav-item"><a class="nav-link" runat="server" href="~/About">Sobre</a></li>
                     <li class="nav-item"><a class="nav-link" runat="server" href="~/Register">Cadastro</a></li>
+                    <%if (Session["UserRa"] != null)
+                        { %>
+                    <li class="nav-item"><a class="nav-link" runat="server" href="~/UserPage">Atividades</a></li>
+                    <li class="nav-item"><a class="nav-link" runat="server" href="~/Logout">Logout</a></li>
+                    <%}
+                    else
+                    {%>
+                    <li class="nav-item"><a class="nav-link" runat="server" href="~/Register">Cadastro</a></li>
                     <li class="nav-item"><a class="nav-link" runat="server" href="~/Login">Login</a></li>
+                    <% } %>
                 </ul>
             </div>
 
