@@ -35,15 +35,7 @@
                         runat="server" Text="Selecione data limite" ControlToValidate="txtDataLimite"
                         Display="dynamic"></asp:RequiredFieldValidator>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 mb-3">
-                    <asp:Label ID="Label1" runat="server" Text="RA"></asp:Label> <br />
-                    <asp:DropDownList ID="dplRA" runat="server" DataSourceID="dsTaskPim" DataTextField="RA" DataValueField="RA">
-                    </asp:DropDownList>
-                    <asp:SqlDataSource ID="dsTaskPim" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT [RA] FROM [Aluno]"></asp:SqlDataSource>
-                </div>
-            </div>
+            </div>            
             <div class="row">
                 <div class="col-md-12 mb-3">
                     <label for="descr">Descrição</label><br />

@@ -11,7 +11,7 @@ namespace UnipTaskManager
         {
             if (Session["UserRa"] == null)
             {
-                Response.Redirect("~/Login.aspx");
+                Response.Redirect("~/Default.aspx");
             }
         }
 
@@ -27,7 +27,7 @@ namespace UnipTaskManager
             String tipo = sltTipo.Text;
             String datalimite = txtDataLimite.Text;
             String descricao = txtDescricao.Text;
-            String ra = dplRA.Text;
+            String ra = (string)Session["UserRa"];
 
             try
             {
