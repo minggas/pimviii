@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Configuration;
+using System.Data.OleDb;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace UnipTaskManager
 {
@@ -16,6 +14,43 @@ namespace UnipTaskManager
 
         protected void Selection_Change(object sender, EventArgs e)
         {
+
+        }
+
+        protected void addTask_Click(object sender, EventArgs e)
+        {
+
+
+            String tipo = sltTipo.Text;
+            String datalimite = txtDataLimite.Text;
+            String descricao = txtDescricao.Text;
+            String ra = dplRA.Text;
+
+            string cs = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString.ToString();
+
+            using (OleDbConnection connection = new OleDbConnection(cs))
+            {
+                string query = "INSERT INTO Tarefa(descricao,tipo,datalimite,ra)VALUES('" + descricao + "','" + tipo + "','" + datalimite + "','" + ra + "')";
+
+                OleDbCommand command = new OleDbCommand(query, connection);
+                
+
+                command.Connection.Open();
+                int state = command.ExecuteNonQuery();
+
+                if (state > 0)
+                {
+                    Response.Redirect("~/UserPage.aspx?msg=Dados salvos com sucesso");
+                    command.Connection.Close();
+                }
+                else
+                {
+                    lblMsg.Text = "Erro ao tentar salvar os dados no banco!";
+                    command.Connection.Close();
+                }
+
+
+            }
 
         }
     }

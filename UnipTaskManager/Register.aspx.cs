@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Data;
 using System.Data.OleDb;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace UnipTaskManager
 {
@@ -20,6 +14,35 @@ namespace UnipTaskManager
 
         protected void Btn_Cadastro(object sender, EventArgs e)
         {
+            string nome = txtNome.Text;
+            string ra = txtRa.Text;
+            string curso = txtCurso.Text;
+            string senha = txtSenha.Text;
+
+            string cs = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString.ToString();
+
+            using (OleDbConnection connection = new OleDbConnection(cs))
+            {
+                string query = "INSERT INTO Aluno(RA, nome, senha, curso)VALUES('" + ra + "', '" + nome + "', '" + senha + "', '" + curso + "')";
+
+                OleDbCommand command = new OleDbCommand(query, connection);
+
+                command.Connection.Open();
+                int state = command.ExecuteNonQuery();
+
+                if (state > 0)
+                {
+                    Response.Redirect("~/Default.aspx?msg=Dados salvos com sucesso");
+                    command.Connection.Close();
+                }
+                else
+                {
+                    lblMsg.Text = "Erro ao tentar salvar os dados no banco!";
+                    command.Connection.Close();
+                }
+
+
+            }
 
         }
     }
