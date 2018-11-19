@@ -19,29 +19,36 @@ namespace UnipTaskManager
             string curso = txtCurso.Text;
             string senha = txtSenha.Text;
 
-            string cs = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString.ToString();
-
-            using (OleDbConnection connection = new OleDbConnection(cs))
+            try
             {
-                string query = "INSERT INTO Aluno(RA, nome, senha, curso)VALUES('" + ra + "', '" + nome + "', '" + senha + "', '" + curso + "')";
+                string cs = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString.ToString();
 
-                OleDbCommand command = new OleDbCommand(query, connection);
-
-                command.Connection.Open();
-                int state = command.ExecuteNonQuery();
-
-                if (state > 0)
+                using (OleDbConnection connection = new OleDbConnection(cs))
                 {
-                    Response.Redirect("~/Default.aspx?msg=Dados salvos com sucesso");
-                    command.Connection.Close();
-                }
-                else
-                {
-                    lblMsg.Text = "Erro ao tentar salvar os dados no banco!";
-                    command.Connection.Close();
-                }
+                    string query = "INSERT INTO Aluno(RA, nome, senha, curso)VALUES('" + ra + "', '" + nome + "', '" + senha + "', '" + curso + "')";
+
+                    OleDbCommand command = new OleDbCommand(query, connection);
+
+                    command.Connection.Open();
+                    int state = command.ExecuteNonQuery();
+
+                    if (state > 0)
+                    {
+                        Response.Redirect("~/Default.aspx?msg=Dados salvos com sucesso");
+                        command.Connection.Close();
+                    }
+                    else
+                    {
+                        lblMsg.Text = "Erro ao tentar salvar os dados no banco!";
+                        command.Connection.Close();
+                    }
 
 
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMsg.Text = ex.Message;
             }
 
         }

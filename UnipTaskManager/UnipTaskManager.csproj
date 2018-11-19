@@ -106,6 +106,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AddTarefa.aspx" />
+    <Content Include="Assets\imgs\cancel.png" />
+    <Content Include="Assets\imgs\delete.png" />
+    <Content Include="Assets\imgs\edit.png" />
+    <Content Include="Assets\imgs\update.png" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
