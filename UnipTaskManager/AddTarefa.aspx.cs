@@ -24,7 +24,7 @@ namespace UnipTaskManager
             String tipo = sltTipo.Text;
             String data = txtDataLimite.Text;
             String descricao = txtDescricao.Text;
-            String ra = dplRA.Text;
+            String ra = (string) Session["UserRa"];
 
             string cs = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString.ToString();
 
@@ -36,7 +36,7 @@ namespace UnipTaskManager
                 command.Parameters.AddWithValue("@tipo", tipo);
                 command.Parameters.AddWithValue("@datalimite", data);
                 command.Parameters.AddWithValue("@descricao", descricao);
-                command.Parameters.AddWithValue("@ra", ra);
+                command.Parameters.AddWithValue("@ra", Convert.ToInt32(ra));
 
                 command.Connection.Open();
                 int state = command.ExecuteNonQuery();
